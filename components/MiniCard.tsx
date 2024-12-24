@@ -56,7 +56,7 @@ function StatCard({title} : {title : string}) {
         "Total hours" : TH 
     }
 
-    const stats : {}  = {
+    const stats = {
         "Calories" : {
             stat1 : {
                 label : "Consumed",
