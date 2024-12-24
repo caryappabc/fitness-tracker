@@ -1,7 +1,7 @@
 import { MongoClient } from 'mongodb';
 
 
-export async function GET(request) {
+export async function GET() {
     // Do whatever you want
     const client = new MongoClient(process.env.MONGODB_URI);
     try{
