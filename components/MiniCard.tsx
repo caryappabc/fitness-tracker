@@ -2,8 +2,6 @@ import React from 'react'
 import { Button } from './ui/button'
 import Image from 'next/image'
 import Link from 'next/link'
-import CaloriesChart from "@/components/CaloriesChart"
-import RunRate from"@/components/RunRate"
 import { ChevronsRight, EllipsisVertical } from 'lucide-react'
 import HT from '@/public/icons/Health_fitness.png'
 import ST from '@/public/icons/streangth_training.png'

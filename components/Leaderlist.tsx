@@ -6,7 +6,6 @@ import {
     CardHeader,
     CardTitle,
   } from "@/components/ui/card"
-import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
 import { CircleUserRound } from 'lucide-react'
 
 export default function Leaderlist() {
