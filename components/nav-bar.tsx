@@ -58,8 +58,8 @@ export async function Navbar(){
                 <Button variant="outline">Signout</Button>
             </form>
             <Avatar>
-                <AvatarImage src={user?.image} />
-                <AvatarFallback>{user?.name?.slice(0, 2).toUpperCase()}</AvatarFallback>
+                {user?.image ? <AvatarImage src={user?.image} /> :
+                <AvatarFallback>{user?.name?.slice(0, 2).toUpperCase()}</AvatarFallback> }
             </Avatar>
         </div>
       </div>

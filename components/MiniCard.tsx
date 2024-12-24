@@ -50,13 +50,13 @@ function FeatureCard({title, path} : {title:string; path:string}) {
 
 function StatCard({title} : {title : string}) {
 
-    const icons = {
+    const icons  = {
         "Calories" : CL,
         "Run Rates" : RR,
         "Total hours" : TH 
     }
 
-    const stats = {
+    const stats : {}  = {
         "Calories" : {
             stat1 : {
                 label : "Consumed",
