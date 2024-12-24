@@ -21,7 +21,7 @@ import {
   
 
 
-function FeatureCard({title, path}) {
+function FeatureCard({title, path} : {title:string; path:string}) {
 
     const icons = {
         "Heath Fitness" : HT,
@@ -48,7 +48,7 @@ function FeatureCard({title, path}) {
 
 
 
-function StatCard({title}) {
+function StatCard({title} : {title : string}) {
 
     const icons = {
         "Calories" : CL,
@@ -127,7 +127,7 @@ function StatCard({title}) {
     )
 } 
 
-export default function MiniCard({title, category , path}) {
+export default function MiniCard({title, category , path} : {title:string; category : string; path : string}) {
   return (
     category === "feature" ? <FeatureCard title={title} path={path} /> :  <StatCard title={title} /> 
   )

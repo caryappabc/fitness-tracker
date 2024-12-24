@@ -21,7 +21,7 @@ const chartConfig = {
   }
 } satisfies ChartConfig
 
-export default function CaloriesChart({val}) {
+export default function CaloriesChart({val} : { val: number }) {
 
     const chartData = [
         { Label: "Calories", Value: {val}, fill: "#000000" },
