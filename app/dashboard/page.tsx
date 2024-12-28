@@ -74,7 +74,7 @@ export default async function Dashboard() {
         {
             id:4,
             title : "Heath Fitness",
-            path : "/tips",
+            path : "/dashboard/tips",
             category : "feature",
             icon : HT,
         },
@@ -82,7 +82,7 @@ export default async function Dashboard() {
         {
             id:5,
             title : "Strength Training",
-            path : "/tips",
+            path : "/dashboard/tips",
             category : "feature",
             icon : ST
         },
@@ -90,7 +90,7 @@ export default async function Dashboard() {
         {
             id:6,
             title : "Fat Burning",
-            path : "/tips",
+            path : "/dashboard/tips",
             category : "feature",
             icon : FB
         },
@@ -100,7 +100,7 @@ export default async function Dashboard() {
         {
             id:7,
             title : "Cardio Training",
-            path : "/tips",
+            path : "/dashboard/tips",
             category : "feature",
             icon : CT,
             
