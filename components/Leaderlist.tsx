@@ -6,49 +6,47 @@ import {
     CardHeader,
     CardTitle,
   } from "@/components/ui/card"
-import { CircleUserRound } from 'lucide-react'
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
-export default function Leaderlist() {
+interface LeaderData {
+  user: string;
+  accumulatedPoints: number;
+  id:string;
+  name:string;
+  image:string;
+}
 
-    const data = [
-        {name : "Caryappa", pts : 190},
-        {name : "Megha", pts : 210},
-        {name : "Debali" , pts : 200},
-        {name : "Namratha", pts : 400},
-        {name : "test", pts : 400},
-        {name : "test-1", pts : 400},
-        {name : "test-2", pts : 0},
-        {name : "test-3", pts : 0},
-        {name : "test-4", pts : 0},
-        {name : "test-5", pts : 0},
-    ]
+export default function Leaderlist({data}: {data: LeaderData[]}) { 
 
-    const sortedData = [...data].sort((a, b) => b.pts - a.pts);
+    const sortedData = [...data].sort((a, b) => b.accumulatedPoints - a.accumulatedPoints);
 
   // Find the highest points
-    const maxPts = sortedData[0].pts;
+    const maxPts = sortedData[0]?.accumulatedPoints ?? 0;
 
 
   return (
-    <Card className="w-2/5 p-3">
-        <CardHeader>
-            <CardTitle>7-Day Hustle Crew</CardTitle>
-            <CardDescription>Top 10 who have met their goals last week</CardDescription>
-        </CardHeader>
-        <CardContent>
-            {sortedData.
-            map((user, index)=>(
-                <div key={index} className={`flex flex-row justify-between p-2 ${user.pts === maxPts ?  `text-green-600 font-bold` : `text-white`}`}>
-                    <div className="flex gap-x-2">
-                    <CircleUserRound />
-                    {user.name} 
-                    </div>
-                    <div>
-                    {user.pts} pts
-                    </div>
-                </div>
-            ))}
-        </CardContent>
+    <Card className="w-full p-2 md:p-3">
+      <CardHeader>
+        <CardTitle className="text-lg md:text-xl">Hustle Crew</CardTitle>
+        <CardDescription className="text-sm md:text-base">Top 10 who have met highest points of them all</CardDescription>
+      </CardHeader>
+      <CardContent>
+        {sortedData.
+        map((user, index)=>(
+          <div key={index} className={`flex flex-row justify-between p-1 md:p-2 items-center text-sm md:text-base ${user.accumulatedPoints === maxPts ?  `text-green-600 font-bold` : `text-white`}`}>
+            <div className="flex flex-row items-center gap-x-2 md:gap-x-4">
+            <Avatar className="h-8 w-8 md:h-10 md:w-10">
+              <AvatarImage src={user?.image ?? undefined} alt={user?.name ?? undefined}/> 
+              <AvatarFallback>{user?.name?.slice(0, 2).toUpperCase()}</AvatarFallback> 
+            </Avatar>
+            {user.user} 
+            </div>
+            <div>
+            {user.accumulatedPoints} pts
+            </div>
+          </div>
+        ))}
+      </CardContent>
     </Card>
   )
 }
