@@ -33,17 +33,17 @@ const items = [
   },
   {
     title: "Profile",
-    url: "/profile",
+    url: "/dashboard/profile",
     icon: ContactRound ,
   },
   {
     title: "Tips",
-    url: "/tips",
+    url: "/dashboard/tips",
     icon: Lightbulb,
   },
   {
     title: "Settings",
-    url: "#",
+    url: "/settings",
     icon: Settings,
   },
 ]

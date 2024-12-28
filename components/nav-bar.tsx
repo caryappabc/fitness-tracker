@@ -9,28 +9,28 @@ export async function Navbar(){
       const session = await auth();
       const user = session?.user;
 
-  const navLinks = [
-    {
-        id : 1,
-        path : "/exercise",
-        label : "Exercise" 
-    },
-    {
-        id : 2,
-        path : "/food-plan",
-        label : "Food plan" 
-    },
-    {
-        id : 3,
-        path : "/daily-habbits",
-        label : "Daily Habbits" 
-    },
-    {
-        id : 4,
-        path : "/water-intake",
-        label : "Water intake" 
-    },
-  ]
+  // const navLinks = [
+    // {
+    //     id : 1,
+    //     path : "/exercise",
+    //     label : "Exercise" 
+    // }
+    // ,{
+    //     id : 2,
+    //     path : "/food-plan",
+    //     label : "Food plan" 
+    // }
+    // ,{
+    //     id : 3,
+    //     path : "/daily-habbits",
+    //     label : "Daily Habbits" 
+    // }
+    // ,{
+    //     id : 4,
+    //     path : "/water-intake",
+    //     label : "Water intake" 
+    // }
+  // ]
   return (
     <nav className="text-white col-span-4 h-max">
       <div className="container mx-auto px-4 py-2 flex gap-x-8 justify-start items-center">
@@ -38,7 +38,7 @@ export async function Navbar(){
           Fitness tracker
         </Link>
 
-        <ul className="flex space-x-6">
+        {/* <ul className="flex space-x-6">
           {navLinks.map((link) => (
             <li key={link.id}>
               <Link href={link.path} className="hover:text-gray-300">
@@ -46,7 +46,7 @@ export async function Navbar(){
               </Link>
             </li>
           ))}
-        </ul>
+        </ul> */}
 
         <div className="flex gap-x-6 self-end ml-auto">
             <form
@@ -58,8 +58,8 @@ export async function Navbar(){
                 <Button variant="outline">Signout</Button>
             </form>
             <Avatar>
-                {user?.image ? <AvatarImage src={user?.image} /> :
-                <AvatarFallback>{user?.name?.slice(0, 2).toUpperCase()}</AvatarFallback> }
+                <AvatarImage src={user?.image ?? undefined} alt={user?.name ?? undefined}/> 
+                <AvatarFallback>{user?.name?.slice(0, 2).toUpperCase()}</AvatarFallback> 
             </Avatar>
         </div>
       </div>
