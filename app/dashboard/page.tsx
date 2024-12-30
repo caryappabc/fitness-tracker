@@ -51,7 +51,7 @@ export default async function Dashboard() {
             },
             stat2 : {
                 label : "Goal",
-                value : userData.activitysession + " Sessions"       
+                value : userData.activitysessiongoal + " Sessions"       
             },
             activities : logData.activities 
         },
