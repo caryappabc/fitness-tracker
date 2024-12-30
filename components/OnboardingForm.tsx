@@ -89,11 +89,8 @@ export default function OnboardingForm({username , email }: {username:string; em
             <FormControl>
               <Input  placeholder="Height"  {...field}  onChange={(event) => {
         const value = event.target.value;
-        // Convert the input value to a number (if possible)
         const numberValue = parseFloat(value);
-        if (!isNaN(numberValue)) {
-            field.onChange({ target: { ...event.target, value: numberValue } });
-        }
+        field.onChange(isNaN(numberValue) || numberValue < 0 ? '' : numberValue);
       }}/>
             </FormControl>
             <FormDescription>
@@ -112,11 +109,8 @@ export default function OnboardingForm({username , email }: {username:string; em
             <FormControl>
               <Input  placeholder="Weight" {...field} onChange={(event) => {
         const value = event.target.value;
-        // Convert the input value to a number (if possible)
         const numberValue = parseFloat(value);
-        if (!isNaN(numberValue)) {
-            field.onChange({ target: { ...event.target, value: numberValue } });
-        }
+        field.onChange(isNaN(numberValue) || numberValue < 0 ? '' : numberValue);
       }} />
             </FormControl>
             <FormDescription>
@@ -137,11 +131,8 @@ export default function OnboardingForm({username , email }: {username:string; em
               <FormControl>
                 <Input  placeholder="Calorie goal" {...field}  onChange={(event) => {
         const value = event.target.value;
-        // Convert the input value to a number (if possible)
         const numberValue = parseFloat(value);
-        if (!isNaN(numberValue)) {
-            field.onChange({ target: { ...event.target, value: numberValue } });
-        }
+        field.onChange(isNaN(numberValue) || numberValue < 0 ? '' : numberValue);
       }}/>
               </FormControl>
               <FormDescription>
@@ -161,11 +152,8 @@ export default function OnboardingForm({username , email }: {username:string; em
               <FormControl>
                 <Input  placeholder="Session goals" {...field} onChange={(event) => {
         const value = event.target.value;
-        // Convert the input value to a number (if possible)
         const numberValue = parseFloat(value);
-        if (!isNaN(numberValue)) {
-            field.onChange({ target: { ...event.target, value: numberValue } });
-        }
+        field.onChange(isNaN(numberValue) || numberValue < 0 ? '' : numberValue);
       }} />
               </FormControl>
               <FormDescription>

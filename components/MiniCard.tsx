@@ -52,7 +52,7 @@ function StatCard({title, icn, stat1 , stat2, activities} : {title : string; icn
             </div>
           } 
           </div>
-          <div className='flex flex-wrap flex-row gap-x-2'>
+          <div className='flex flex-wrap flex-row gap-2 '>
           {activities.length > 0 && activities.map((activity, index) => (<p className="text-sm p-1 border-[1px] border-white rounded-sm" key={index}>{activity}</p>))}
           </div>
         

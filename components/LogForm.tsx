@@ -38,6 +38,7 @@ const activities = [
   "Squash",
   "Cricket",
   "Football",
+  "Yoga"
 ]
 
 const formSchema = z.object({
@@ -82,7 +83,7 @@ export default function Log({data} : {data:User}) {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     const today = new Date().toISOString().slice(0, 10)
     const maxwalkPoints = 6000; 
-    const walkpoints = Math.min(Math.floor(values.NoofSteps / 1000) * 1 , maxwalkPoints);
+    const walkpoints = Math.min(Math.floor(values.NoofSteps / 1000) * 100, maxwalkPoints);
     const sessionpoints = values.activitysession * 100;
     const payload = {
       ...values,
@@ -142,21 +143,17 @@ export default function Log({data} : {data:User}) {
             <FormLabel className="text-sm md:text-base lg:text-lg">Enter the number of steps</FormLabel>
             <FormControl>
               <Input placeholder="..." {...field} type="number" onChange={(event) => {
-      const value = event.target.value;
-      // Convert the input value to a number (if possible)
-      const numberValue = parseFloat(value);
-      if (!isNaN(numberValue)) {
-        field.onChange({ target: { ...event.target, value: numberValue } });
-      }
-      }}  />
+                const value = event.target.value;
+                const numberValue = parseFloat(value);
+                field.onChange(isNaN(numberValue) || numberValue < 0 ? '' : numberValue);
+              }} />
             </FormControl>
             <FormDescription className="text-xs md:text-sm lg:text-base">
               No of steps completed for the day
             </FormDescription>
             <FormMessage />
             </FormItem>
-          )}
-          />
+          )} />
           <FormField
           control={form.control}
           name="NoofCals"
@@ -165,21 +162,17 @@ export default function Log({data} : {data:User}) {
             <FormLabel className="text-sm md:text-base lg:text-lg">Enter the number of Calories burnt</FormLabel>
             <FormControl>
               <Input placeholder="00" {...field} type="number" onChange={(event) => {
-      const value = event.target.value;
-      // Convert the input value to a number (if possible)
-      const numberValue = parseFloat(value);
-      if (!isNaN(numberValue)) {
-        field.onChange({ target: { ...event.target, value: numberValue } });
-      }
-      }}/>
+                const value = event.target.value;
+                const numberValue = parseFloat(value);
+                field.onChange(isNaN(numberValue) || numberValue < 0 ? '' : numberValue);
+              }} />
             </FormControl>
             <FormDescription className="text-xs md:text-sm lg:text-base">
               No of calories burnt today
             </FormDescription>
             <FormMessage />
             </FormItem>
-          )}
-          />
+          )} />
           <FormField
           control={form.control}
           name="activitysession"
@@ -188,21 +181,17 @@ export default function Log({data} : {data:User}) {
             <FormLabel className="text-sm md:text-base lg:text-lg">No of sessions</FormLabel>
             <FormControl>
               <Input placeholder="00" {...field} type="number" onChange={(event) => {
-      const value = event.target.value;
-      // Convert the input value to a number (if possible)
-      const numberValue = parseFloat(value);
-      if (!isNaN(numberValue)) {
-        field.onChange({ target: { ...event.target, value: numberValue } });
-      }
-      }}/>
+                const value = event.target.value;
+                const numberValue = parseFloat(value);
+                field.onChange(isNaN(numberValue) || numberValue < 0 ? '' : numberValue);
+              }} />
             </FormControl>
             <FormDescription className="text-xs md:text-sm lg:text-base">
               Activity performed for?
             </FormDescription>
             <FormMessage />
             </FormItem>
-          )}
-          />
+          )} />
           <FormField
           control={form.control}
           name="activities"
@@ -218,11 +207,11 @@ export default function Log({data} : {data:User}) {
                   value={activity}
                   checked={field.value.includes(activity)}
                   onChange={(event) => {
-                  const value = event.target.value;
-                  const newValue = event.target.checked
-                    ? [...field.value, value]
-                    : field.value.filter((v) => v !== value);
-                  field.onChange(newValue);
+                    const value = event.target.value;
+                    const newValue = event.target.checked
+                      ? [...field.value, value]
+                      : field.value.filter((v) => v !== value);
+                    field.onChange(newValue);
                   }}
                 />
                 <span>{activity}</span>
@@ -235,8 +224,7 @@ export default function Log({data} : {data:User}) {
             </FormDescription>
             <FormMessage />
             </FormItem>
-          )}
-          />
+          )} />
           <Button type="submit" className="text-sm md:text-base lg:text-lg">Submit</Button>
         </form>
         </Form>
