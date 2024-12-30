@@ -12,6 +12,9 @@ export default async function ProfilePage() {
 
     const logResponse = await fetch(`${getApiUrl()}/api/log?id=${userId}`);
     const logs: { _id: string; logdata: string; NoofSteps: number; NoofCals: number; activitysession: number; walk: number; session: number; totalpoints: number; activities: string[];}[] | {message : string;} = await logResponse.json();
+    if (Array.isArray(logs)) {
+        logs.sort((a, b) => new Date(b.logdata).getTime() - new Date(a.logdata).getTime());
+    }
 
     return (
       <div className="p-4 md:p-6 space-y-4">

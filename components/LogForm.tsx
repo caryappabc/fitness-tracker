@@ -103,8 +103,6 @@ export default function Log({data} : {data:User}) {
         body: JSON.stringify(payload),
       });
 
-      console.log("response status", response.ok)
-
       if (!response.ok) {
         const errorData = await response.json();
         setErrorMessage(errorData.message || 'An error occurred');
@@ -116,8 +114,8 @@ export default function Log({data} : {data:User}) {
       setErrorMessage(null); // Clear any previous error message
       setSuccessMessage('Log submitted successfully');
       setTimeout(() => {
-        redirect('/dashboard/profile'); // Redirect on success
-      }, 5000); // Show message for 2 seconds before redirecting
+        redirect('/dashboard/stats'); // Redirect on success
+      }, 2000); // Show message for 2 seconds before redirecting
     } catch (error) {
       console.log('Error:', error);
       setErrorMessage('An error occurred while submitting the form');
