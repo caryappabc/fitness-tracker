@@ -157,10 +157,10 @@ export default async function Stats() {
     <div className="container flex flex-col mx-auto p-4 gap-y-5">
       <h1 className='font-extrabold text-2xl'>Dashboard</h1>
       <div className="flex flex-row flex-wrap md:flex-nowrap justify-start gap-x-2">
-          <StatsCard title="Steps" value={`${stats.steps} steps`} desc={`${stats.stepsDiff.toFixed(2)}% from yesterday`} icon={<Footprints/>} />
-          <StatsCard title="Calories" value={`${stats.calories} consumed`} desc={`${stats.caloriesDiff.toFixed(2)}% from yesterday`} icon={<Gauge />} />
-          <StatsCard title="Points" value={`${stats.points}`} desc={`${stats.pointsDiff.toFixed(2)}% from yesterday`} icon={<Tally5 />} />
-          <StatsCard title="Session" value={`${stats.activity} / ${stats.activityGoal} steps`} desc={`${stats.activityDiff.toFixed(2)}% from yesterday`} icon={<Goal />} />
+          <StatsCard title="Steps" value={`${stats.steps} steps walked`} desc={`${stats.stepsDiff.toFixed(2)}% from last entry`} icon={<Footprints/>} />
+          <StatsCard title="Calories" value={`${stats.calories} cal consumed`} desc={`${stats.caloriesDiff.toFixed(2)}% from last entry`} icon={<Gauge />} />
+          <StatsCard title="Points" value={`${stats.points} pts earned`} desc={`${stats.pointsDiff.toFixed(2)}% from last entry`} icon={<Tally5 />} />
+          <StatsCard title="Session" value={`${stats.activity} / ${stats.activityGoal} sessions`} desc={`${stats.activityDiff.toFixed(2)}% from last entry`} icon={<Goal />} />
       </div>
       <div className="flex flex-col md:flex-row gap-4">
         <div className="w-full md:w-1/2">
