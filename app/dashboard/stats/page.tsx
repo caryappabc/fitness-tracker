@@ -109,7 +109,7 @@ export default async function Stats() {
       calories: (sum.calories || 0) + log.NoofCals,
       points: (sum.points || 0) + log.totalpoints,
       activity: (sum.activity || 0) + log.activitysession,
-      activityGoal: userdata.activitysession || 0, // Assuming this is constant per day
+      activityGoal: userdata.activitysessiongoal || 0, // Assuming this is constant per day
     }), {});
   };
 
