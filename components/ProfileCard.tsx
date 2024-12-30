@@ -9,7 +9,7 @@ interface User {
     height : number;
     weight : number;
     calorieGoal : number;
-    activitysession: number;
+    activitysessiongoal: number;
     image : string;
     email: string;
   }
@@ -42,10 +42,10 @@ export default function ProfileCard({user} :{user : User | null} ) {
         </Avatar>
       </div>
       <div className="flex flex-wrap gap-4 justify-center md:justify-start">
-        <p className="border-2 rounded-xl p-2 text-sm md:text-base h-fit">Height: {userData?.height} cm</p> 
-        <p className="border-2 rounded-xl p-2 text-sm md:text-base  h-fit">Weight: {userData?.weight} kg</p> 
-        <p className="border-2 rounded-xl p-2 text-sm md:text-base  h-fit">Calorie Goal: {userData?.calorieGoal} kcal</p> 
-        <p className="border-2 rounded-xl p-2 text-sm md:text-base  h-fit">Daily Activity Session Goal: {user?.activitysession}</p> 
+        <p className="border-2 rounded-xl p-2 text-sm md:text-base h-fit">Height : {userData?.height} cm</p> 
+        <p className="border-2 rounded-xl p-2 text-sm md:text-base  h-fit">Weight : {userData?.weight} kg</p> 
+        <p className="border-2 rounded-xl p-2 text-sm md:text-base  h-fit">Calorie Goal : {userData?.calorieGoal} kcal</p> 
+        <p className="border-2 rounded-xl p-2 text-sm md:text-base  h-fit">Daily Activity Session Goal : {user?.activitysessiongoal} sessions</p> 
       </div>
     </CardContent>
   );
