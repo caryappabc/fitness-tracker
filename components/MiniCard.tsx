@@ -11,17 +11,30 @@ import { ChevronsRight} from 'lucide-react'
 
 function FeatureCard({title, path, icn} : {title:string; path:string; icn:StaticImageData | ""}) {
 
+  const desc : { "Heath Fitness" : string;
+    "Strength Training" : string;
+    "Fat Burning" : string;
+    "Cardio Training" : string;
+  } = {
+    "Heath Fitness" : "Discover expert tips, and motivational insights to achieve your health and fitness goals.",
+    "Strength Training" : "Unlock the power of strength training with expert guidance and routines.",
+    "Fat Burning" : "Accelerate your fat-burning journey with proven strategies and effective workouts.",
+    "Cardio Training" : "Boost your heart health and endurance with dynamic cardio training plans."
+  }
+
     return (
-        <div className="flex pl-8 py-5 gap-x-3 bg-[#373d41] col-span-3 md:col-span-2 lg:col-span-1">
+      <div className='flex flex-col pl-8 py-5 gap-x-3 bg-[#373d41] col-span-3 md:col-span-2 lg:col-span-1'>
+            <h6 className='font-bold w-full'>{title}</h6>
+        <div className="flex ">
             <div className="flex-col gap-y-3 w-1/2">
-            <h6 className='font-bold'>{title}</h6>
-            <p className="text-xs text-wrap text-left my-3">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <p className="text-xs text-wrap text-left my-3">{desc[title as keyof typeof desc]}</p>
             <Button variant="outline" asChild>
                 <Link href={path}>Learn more <ChevronsRight /></Link></Button>
             </div>
             <div className='content-center'>
                 <Image src={icn} alt={title} width={100} />
             </div>
+        </div>
         </div>
     )
 } 
