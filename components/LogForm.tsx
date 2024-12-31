@@ -82,7 +82,7 @@ export default function Log({data} : {data:User}) {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     const today = new Date().toISOString().slice(0, 10)
-    const maxwalkPoints = 6000; 
+    const maxwalkPoints = 600; 
     const walkpoints = Math.min(Math.floor(values.NoofSteps / 1000) * 100, maxwalkPoints);
     const sessionpoints = values.activitysession * 100;
     const payload = {
