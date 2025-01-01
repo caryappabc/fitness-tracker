@@ -74,15 +74,60 @@ export async function GET(req) {
 
 export async function POST(request) {
     const body = await request.json(); // Parse the stream as JSON
+    const today = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' })).toISOString().slice(0, 10);
+    const maxWalkPoints = 600;
+    
+
     try {
         const client = await clientPromise;
         console.log("Connected successfully to server");
         const db = client.db('Log');
         const collection = db.collection(body.id);
-        const insertlog = await collection.insertOne(body);
-        return new Response(JSON.stringify({ insertlog }), {
-            status: 200
-        });
+
+        // Check if there's already a log for today
+        const existingLog = await collection.findOne({ logdata: today });
+
+        if (existingLog) {
+            const walkPoints =  Math.min((Math.floor(body.NoofSteps / 1000) * 100) + existingLog.walk , maxWalkPoints);
+            const sessionPoints = (body.activitysession * 100) + existingLog.session;
+            const totalPoints =  (existingLog.walk === 600 ? existingLog.walk : walkPoints) + sessionPoints;
+            // Update the existing log
+            console.log(walkPoints, sessionPoints, totalPoints);
+            const updatedLog = {
+                $set: {
+                    NoofSteps: existingLog.NoofSteps + body.NoofSteps,
+                    NoofCals: existingLog.NoofCals + body.NoofCals,
+                    activitysession: existingLog.activitysession + body.activitysession,
+                    activities: [...new Set([...existingLog.activities, ...body.activities])],
+                    totalpoints: totalPoints,
+                    walk: walkPoints,
+                    session: sessionPoints,
+                    _created : existingLog._created,
+                    _modified : new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }))
+                }
+            };
+            await collection.updateOne({ logdata: today }, updatedLog);
+            return new Response(JSON.stringify({ message: 'Log updated successfully' }), {
+                status: 200
+            });
+        } else {
+            const walkPoints = Math.min(Math.floor(body.NoofSteps / 1000) * 100, maxWalkPoints);
+            const sessionPoints = body.activitysession * 100;
+            const totalPoints = walkPoints + sessionPoints;
+            // Insert new log
+            const newLog = {
+                ...body,
+                logdata: today,
+                totalpoints: totalPoints,
+                walk: walkPoints,
+                session: sessionPoints,
+                _created: new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }))
+            };
+            const insertlog = await collection.insertOne(newLog);
+            return new Response(JSON.stringify({ insertlog }), {
+                status: 200
+            });
+        }
     } catch (err) {
         console.error(err.stack);
         return new Response(JSON.stringify({ message: err.message }), {

@@ -81,44 +81,38 @@ export default function Log({data} : {data:User}) {
   })
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    const today = new Date().toISOString().slice(0, 10)
-    const maxwalkPoints = 600; 
-    const walkpoints = Math.min(Math.floor(values.NoofSteps / 1000) * 100, maxwalkPoints);
-    const sessionpoints = values.activitysession * 100;
+    const today = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' })).toISOString().slice(0, 10);
     const payload = {
-      ...values,
-      id: data._id,
-      logdata: today,
-      totalpoints: walkpoints + sessionpoints,
-      walk: walkpoints,
-      session: sessionpoints
+        ...values,
+        id: data._id,
+        logdata: today
     };
 
     try {
-      const response = await fetch(`${getApiUrl()}/api/log`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(payload),
-      });
+        const response = await fetch(`${getApiUrl()}/api/log`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload),
+        });
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        setErrorMessage(errorData.message || 'An error occurred');
-        return;
-      }
+        if (!response.ok) {
+            const errorData = await response.json();
+            setErrorMessage(errorData.message || 'An error occurred');
+            return;
+        }
 
-      const responseData = await response.json();
-      console.log('Success:', responseData);
-      setErrorMessage(null); // Clear any previous error message
-      setSuccessMessage('Log submitted successfully');
-      setTimeout(() => {
-        redirect('/dashboard/stats'); // Redirect on success
-      }, 2000); // Show message for 2 seconds before redirecting
+        const responseData = await response.json();
+        console.log('Success:', responseData);
+        setErrorMessage(null); // Clear any previous error message
+        setSuccessMessage('Log submitted successfully');
+        setTimeout(() => {
+            redirect('/dashboard/stats'); // Redirect on success
+        }, 2000); // Show message for 2 seconds before redirecting
     } catch (error) {
-      console.log('Error:', error);
-      setErrorMessage('An error occurred while submitting the form');
+        console.log('Error:', error);
+        setErrorMessage('An error occurred while submitting the form');
     }
   }
 
