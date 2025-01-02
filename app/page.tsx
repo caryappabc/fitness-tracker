@@ -28,7 +28,7 @@ export default async function Home() {
     }
     if (user.ok) {
       const Userdata = await user?.json()
-      if (Userdata.onboarded === false) redirect('/profile')
+      if (Userdata.onboarded === false) redirect('/onboarding')
       else redirect('/dashboard')
     }
   }
