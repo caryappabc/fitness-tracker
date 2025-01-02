@@ -50,18 +50,16 @@ export default async function Stats() {
 
   if (!Array.isArray(data) || !data.length) {
     return (
-      <div className="container flex flex-col mx-auto p-4 gap-y-5">
+      <div className="container flex flex-col  mx-auto p-4 gap-y-5">
         <h1 className='font-extrabold text-2xl'>Dashboard</h1>
         <div className="border-3 border-white p-3">
         <p className="text-center text-red-600">No data!! Please log data daily to see your stats</p>
         </div>
-        <div className="flex flex-row flex-no-wrap justify-start gap-x-2">
+        <div className="flex flex-row flex-no-wrap justify-start gap-x-2 order-2 md:order-3">
           <StatsCard title="Steps" icon={<Footprints />} />
           <StatsCard title="Calories" icon={<Gauge />} />
-          <StatsCard title="Points" icon={<Tally5 />} />
-          <StatsCard title="Session" icon={<Goal />} />
         </div>
-        <div className="flex flex-row gap-x-2">
+        <div className="flex flex-col-reverse gap-y-3 lg:flex-row gap-x-2">
           <MontlyProgressChart />
           <Leaderlist data={aggregatedPoints}  />
         </div>
@@ -156,7 +154,7 @@ export default async function Stats() {
   return (
     <div className="container flex flex-col mx-auto p-4 gap-y-5">
       <h1 className='font-extrabold text-2xl'>Dashboard</h1>
-      <div className="flex flex-row flex-wrap md:flex-nowrap justify-start gap-x-2">
+      <div className="flex flex-row flex-wrap md:flex-nowrap justify-start gap-x-2 gap-y-3">
           <StatsCard title="Steps" value={`${stats.steps} steps walked`} desc={`${stats.stepsDiff.toFixed(2)}% from last entry`} icon={<Footprints/>} />
           <StatsCard title="Calories" value={`${stats.calories} cal consumed`} desc={`${stats.caloriesDiff.toFixed(2)}% from last entry`} icon={<Gauge />} />
           <StatsCard title="Points" value={`${stats.points} pts earned`} desc={`${stats.pointsDiff.toFixed(2)}% from last entry`} icon={<Tally5 />} />

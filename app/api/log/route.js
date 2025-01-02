@@ -1,4 +1,5 @@
 import clientPromise from '@/lib/mongodb';
+import moment from 'moment-timezone';
 
 export async function GET(req) {
     const { searchParams } = new URL(req.url);
@@ -74,7 +75,9 @@ export async function GET(req) {
 
 export async function POST(request) {
     const body = await request.json(); // Parse the stream as JSON
-    const today = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' })).toISOString().slice(0, 10);
+    const indiaTime = moment.tz('Asia/Kolkata');
+    const dateForMongoDB = indiaTime.toDate();
+    const today = dateForMongoDB.toISOString().slice(0, 10);
     const maxWalkPoints = 600;
     
 
@@ -103,7 +106,7 @@ export async function POST(request) {
                     walk: walkPoints,
                     session: sessionPoints,
                     _created : existingLog._created,
-                    _modified : new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }))
+                    _modified : dateForMongoDB
                 }
             };
             await collection.updateOne({ logdata: today }, updatedLog);
@@ -121,7 +124,7 @@ export async function POST(request) {
                 totalpoints: totalPoints,
                 walk: walkPoints,
                 session: sessionPoints,
-                _created: new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }))
+                _created: dateForMongoDB
             };
             const insertlog = await collection.insertOne(newLog);
             return new Response(JSON.stringify({ insertlog }), {

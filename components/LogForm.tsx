@@ -69,7 +69,7 @@ interface User {
 }
 
 export default function Log({data} : {data:User}) {
-  console.log(data);
+
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
 

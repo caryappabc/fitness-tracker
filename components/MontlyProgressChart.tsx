@@ -39,7 +39,7 @@ export default function MontlyProgressChart({ data, trend = 0 }: MontlyProgressC
 
   if (!data) {
     return (
-      <Card className="w-full md:w-3/5 ">
+      <Card className="w-full ">
         <CardHeader>
           <Skeleton className="h-6 w-1/2" />
           <Skeleton className="h-4 w-1/4 mt-2" />
