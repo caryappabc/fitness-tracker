@@ -18,7 +18,7 @@ interface StatsCardProps {
 export default function StatsCard({ title, icon, value, desc }: StatsCardProps) {
   if (!value || !desc) {
     return (
-      <Card className="w-1/4">
+      <Card className="w-1/2">
         <CardHeader>
           <Skeleton className="h-6 w-1/2" />
         </CardHeader>
